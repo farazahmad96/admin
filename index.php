@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./dist/styles.css">
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <title>Dashboard | Tailwind Admin</title>
+    <title>Dashboard | Admin</title>
 </head>
 
 <body>
@@ -55,6 +55,14 @@
                             <i class="fas fa-tachometer-alt float-left mx-2"></i>
                             Dashboard
                             <span><i class="fas fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="forms.html"
+                           class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fa fa-building float-left mx-2"></i>
+                            Businesses
+                            <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>
                     <li class="w-full h-full py-3 px-2 border-b border-light-border">
@@ -140,10 +148,10 @@
                         <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    $244
+                                    123
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
-                                    Total Sales
+                                    Total Businesses
                                 </a>
                             </div>
                         </div>
@@ -151,10 +159,10 @@
                         <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    $199.4
+                                    $1,500.09
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
-                                    Total Cost
+                                    Total Revenue
                                 </a>
                             </div>
                         </div>
@@ -162,7 +170,7 @@
                         <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    900
+                                    23
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
                                     Total Users
