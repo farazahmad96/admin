@@ -1,3 +1,34 @@
+<?php
+include('../connection.php');
+
+// Initialize session
+session_start();
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Validate user credentials
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Valid credentials, set session variables
+        $_SESSION['username'] = $username;
+
+        // Redirect to a dashboard or home page
+        header('Location: index.php');
+        exit();
+    } else {
+        // Invalid credentials, display an error message
+        $error_message = "Invalid username or password";
+    }
+}
+
+// Close the database connection
+// $conn->close();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -19,7 +50,7 @@
 <div class="container mx-auto h-full flex flex-1 justify-center items-center">
   <div class="w-full max-w-lg">
     <div class="leading-loose">
-      <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+      <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl" method="POST" action="">
         <p class="text-gray-800 font-medium text-center text-lg font-bold">Login</p>
         <div class="">
           <label class="block text-sm text-gray-00" for="username">Username</label>
