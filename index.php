@@ -1,3 +1,30 @@
+<?php
+include('../connection.php');
+
+$noOfBusinesses = "SELECT COUNT(id) as total_businesses FROM businesses";
+$resultBusiness = $conn->query($noOfBusinesses);
+
+$totalBusinesses = 0;
+
+if ($resultBusiness->num_rows > 0) {
+    $row = $resultBusiness->fetch_assoc();
+    $totalBusinesses = $row['total_businesses'];
+}
+
+// Fetch the number of users
+$noOfUsers = "SELECT COUNT(id) as total_users FROM users";
+$resultUsers = $conn->query($noOfUsers);
+
+$totalUsers = 0;
+
+if ($resultUsers->num_rows > 0) {
+    $rowUsers = $resultUsers->fetch_assoc();
+    $totalUsers = $rowUsers['total_users'];
+}
+
+$conn->close();
+?>
+
 <!-- header  -->
     <?php include('./include/header.php'); ?>
 <!-- header  -->
@@ -23,7 +50,7 @@
                         <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    123
+                                    <?= $totalBusinesses ?>
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
                                     Total Businesses
@@ -45,7 +72,7 @@
                         <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    23
+                                <?= $totalUsers ?>
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
                                     Total Users
@@ -70,7 +97,7 @@
                     <!-- Card Sextion Starts Here -->
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
 
-                        <!-- card -->
+                        <!-- trending cat card -->
 
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
                             <div class="px-6 py-2 border-b border-light-grey">
@@ -147,7 +174,7 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- /card -->
+                        <!-- /trending category card -->
 
                     </div>
                     <!-- /Cards Section Ends Here -->
