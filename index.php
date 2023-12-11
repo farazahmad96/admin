@@ -22,11 +22,8 @@ if ($resultUsers->num_rows > 0) {
 }
 
 // Fetch trending categories based on usage count
-$trendingCategoriesQuery = "SELECT category_id, COUNT(*) as category_count
-                           FROM businesses
-                           GROUP BY category_id
-                           ORDER BY category_count DESC
-                           LIMIT 4"; // Adjust the limit based on the number of categories you want to display
+
+$trendingCategoriesQuery = "SELECT bc.category_name, COUNT(b.category_id) as category_count FROM businesses b JOIN business_category bc ON b.category_id = bc.id GROUP BY b.category_id ORDER BY category_count DESC LIMIT 4";
 $resultCategories = $conn->query($trendingCategoriesQuery);
 
 
@@ -118,7 +115,7 @@ $conn->close();
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Item</th>
-                                        <th scope="col">Last</th>
+                                        <th scope="col">Used</th>
                                         <th scope="col">Current</th>
                                         <th scope="col">Change</th>
                                     </tr>
@@ -131,14 +128,14 @@ $conn->close();
                                                 Twitter
                                             </button>
                                         </td>
-                                        <td>4500</td>
-                                        <td>4600</td>
+                                        <td>-</td>
+                                        <td>-</td>
                                         <td>
-                                            <span class="text-green-500"><i class="fas fa-arrow-up"></i>5%</span>
+                                            <span class="text-green-500"><i class="fas fa-arrow-up"></i>-%</span>
                                         </td>
                                     </tr>
                                     <?php
-
+$counter = 2;
                 while ($row = $resultCategories->fetch_assoc()) {
                     echo '<tr>
                             <th scope="row">' . $counter . '</th>
@@ -148,6 +145,10 @@ $conn->close();
                                 </button>
                             </td>
                             <td>' . $row['category_count'] . '</td>
+                            <td>-</td>
+                            <td>
+                                <span class="text-green-500"><i class="fas fa-arrow-up"></i>5%</span>
+                            </td>
                         </tr>';
                     $counter++;
                 }
