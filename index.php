@@ -1,6 +1,5 @@
 <?php
 include('../connection.php');
-
 $noOfBusinesses = "SELECT COUNT(id) as total_businesses FROM businesses";
 $resultBusiness = $conn->query($noOfBusinesses);
 
@@ -22,6 +21,16 @@ if ($resultUsers->num_rows > 0) {
     $totalUsers = $rowUsers['total_users'];
 }
 
+// Fetch trending categories based on usage count
+$trendingCategoriesQuery = "SELECT category_id, COUNT(*) as category_count
+                           FROM businesses
+                           GROUP BY category_id
+                           ORDER BY category_count DESC
+                           LIMIT 4"; // Adjust the limit based on the number of categories you want to display
+$resultCategories = $conn->query($trendingCategoriesQuery);
+
+
+//connection
 $conn->close();
 ?>
 
@@ -128,47 +137,22 @@ $conn->close();
                                             <span class="text-green-500"><i class="fas fa-arrow-up"></i>5%</span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>
-                                            <button class="bg-primary hover:bg-primary-dark text-white font-light py-1 px-2 rounded-full">
-                                                Facebook
-                                            </button>
-                                        </td>
-                                        <td>10000</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <span class="text-red-500"><i class="fas fa-arrow-down"></i>65%</span>
-                                        </td>
-                                    </tr>
+                                    <?php
 
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>
-                                            <button class="bg-success hover:bg-success-dark text-white font-light py-1 px-2 rounded-full">
-                                                Amazon
-                                            </button>
-                                        </td>
-                                        <td>10000</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <span class="text-red-500"><i class="fas fa-arrow-down"></i>65%</span>
-                                        </td>
-                                    </tr>
+                while ($row = $resultCategories->fetch_assoc()) {
+                    echo '<tr>
+                            <th scope="row">' . $counter . '</th>
+                            <td>
+                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
+                                    ' . $row['category_name'] . '
+                                </button>
+                            </td>
+                            <td>' . $row['category_count'] . '</td>
+                        </tr>';
+                    $counter++;
+                }
 
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>
-                                            <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                Microsoft
-                                            </button>
-                                        </td>
-                                        <td>10000</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <span class="text-green-500"><i class="fas fa-arrow-up"></i>65%</span>
-                                        </td>
-                                    </tr>
+                ?>
 
                                     </tbody>
                                 </table>
@@ -179,8 +163,8 @@ $conn->close();
                     </div>
                     <!-- /Cards Section Ends Here -->
 
-                    <!-- Progress Bar -->
-                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
+                    <!-- Progress Bar hidden -->
+                    <div class="hidden flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
                             <div class="px-6 py-2 border-b border-light-grey">
                                 <div class="font-bold text-xl">Progress Among Projects</div>
@@ -219,7 +203,7 @@ $conn->close();
                         </div>
                     </div>
                     <!--Profile Tabs-->
-                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 p-1 mt-2 mx-auto lg:mx-2 md:mx-2 justify-between">
+                    <div class="hidden flex flex-1 flex-col md:flex-row lg:flex-row mx-2 p-1 mt-2 mx-auto lg:mx-2 md:mx-2 justify-between">
                         <!--Top user 1-->
                         <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
                             <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
