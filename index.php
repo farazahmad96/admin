@@ -21,8 +21,18 @@ if ($resultUsers->num_rows > 0) {
     $totalUsers = $rowUsers['total_users'];
 }
 
-// Fetch trending categories based on usage count
+// Fetch the number of categories
+$noOfCategories = "SELECT COUNT(id) as total_users FROM business_category";
+$resultCat = $conn->query($noOfCategories);
 
+$totalUsers = 0;
+
+if ($resultCat->num_rows > 0) {
+    $rowCat = $resultCat->fetch_assoc();
+    $totalCategories = $rowCat['total_users'];
+}
+
+// Fetch trending categories based on usage count
 $trendingCategoriesQuery = "SELECT bc.category_name, COUNT(b.category_id) as category_count FROM businesses b JOIN business_category bc ON b.category_id = bc.id GROUP BY b.category_id ORDER BY category_count DESC LIMIT 4";
 $resultCategories = $conn->query($trendingCategoriesQuery);
 
@@ -89,10 +99,10 @@ $conn->close();
                         <div class="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    500
+                                    <?= $totalCategories ?>
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
-                                    Total Products
+                                    Total Categories
                                 </a>
                             </div>
                         </div>
@@ -121,7 +131,7 @@ $conn->close();
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr class="hidden">
                                         <th scope="row">1</th>
                                         <td>
                                             <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
@@ -135,7 +145,7 @@ $conn->close();
                                         </td>
                                     </tr>
                                     <?php
-$counter = 2;
+$counter = 1;
                 while ($row = $resultCategories->fetch_assoc()) {
                     echo '<tr>
                             <th scope="row">' . $counter . '</th>
