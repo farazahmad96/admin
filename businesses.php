@@ -48,6 +48,7 @@ $businesses_res = $conn->query($businesses);
             <!-- <div class="mb-4 xl:max-w-[1200px] mx-auto" id="business_K_<?= $row['id']; ?>"> -->
 
 
+
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -130,28 +131,28 @@ $businesses_res = $conn->query($businesses);
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <?= $row['business_name'] ?>
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['business_desc'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['business_address'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['business_phone'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['business_social'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['business_website'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['coupon_code'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['days'] ?>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-gray-900">
                           <?= $row['status'] == 1 ? '<span class="font-medium text-green-600 dark:text-green-500 hover:underline">Active</span>' : '<span class="font-medium text-red-600 dark:text-red-500 hover:underline">Inactive</span>' ?>
                         </td>
                         <td class="flex items-center px-6 py-4">

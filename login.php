@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else {
         // Invalid credentials, display an error message
-        $error_message = "Invalid username or password";
+        header('Location: login.php?failed');
     }
 }
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <head>
-  <title>Login | Tailwind Admin</title>
+  <title>Login | Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="./dist/styles.css">
@@ -43,6 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   .login{
     background: url('./dist/images/login-new.jpeg')
   }
+  .red {
+    color:red;
+  }
   </style>  
 </head>
 
@@ -51,7 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <div class="w-full max-w-lg">
     <div class="leading-loose">
       <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl" method="POST" action="">
-        <p class="text-gray-800 font-medium text-center text-lg font-bold">Login</p>
+        <?php
+        if(isset($_GET['failed'])){?>
+      <span class="red">Invalid Username and Password</span>
+      <?php  } ?> 
+      <p class="text-gray-800 font-medium text-center text-lg font-bold">Login</p>
         <div class="">
           <label class="block text-sm text-gray-00" for="username">Username</label>
           <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="username" name="username" type="text" required="" placeholder="User Name" aria-label="username">

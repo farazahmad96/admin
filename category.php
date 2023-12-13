@@ -39,57 +39,69 @@ $businesses_res = $conn->query($businesses);
       <!--Main-->
       <main class="bg-white-500 flex-1 p-3 overflow-hidden">
 
-
         <div class="w-10/12 my-[30px] mx-auto">
-          <h1 class="mb-2 text-3xl font-bold tracking-tight text-center text-gray-900 dark:text-white">Add Your Category</h1>
+          <h1 class="mb-2 text-3xl font-bold tracking-tight text-center text-gray-900 dark:text-white">Add New Category</h1>
           <form id="categoryForm" method="POST" action="">
-            <div class="mt-10 flex">
-              <i class="fa-solid fa-euro text-4xl ml-3 flex"> </i>
-              <h2 class="ml-5 font-semibold text-2xl">Price per day</h2>
-              <input type="number" name="price_per_day" class="bg-gray-200 w-10 ml-3" placeholder="Price" required />
 
-              <h2 class="ml-5 font-semibold text-2xl">Category Name</h2>
-              <input id="categoryNameInput" name="category_name" placeholder="Enter Category Name" type="text" class="bg-gray-200 w-40 ml-3" required />
-              <button type="submit" name="add_category" onclickkk="addCategory()" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-10">
+            <div class="flex flex-wrap -mx-3 mb-6">
+
+
+              <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-grey-darker text-md font-light mb-1" for="price_per_day">
+                  Price Per Day
+                </label>
+                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" name="price_per_day" id="price_per_day" type="number" placeholder="1" required>
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-md font-light mb-1" for="category_name">
+                  Category Name
+                </label>
+                <input class="appearance-none block w-full text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" id="category_name" name="category_name" type="text" placeholder="Hotel.." required>
+              </div>
+              <!-- <button type="submit" name="add_category" onclickkk="addCategory()" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-10">
+                Add Category
+              </button> -->
+              <button type="submit" name="add_category" onclickkk="addCategory()" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                 Add Category
               </button>
-            </div>
           </form>
 
-          <div class="ml-5 mt-10 list-categories">
-            <h1 class="text-2xl">Category list</h1>
-            <div class="ml-5 mt-5">
+        </div>
 
-              <?php
-              if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                  $category_name = $row["category_name"];
-                  echo '<div class="ml-5 mt-4">
+        <div class="ml-5 mt-10 list-categories">
+          <h1 class="text-2xl">Category list</h1>
+          <div class="ml-5 mt-5">
+
+            <?php
+            if ($result->num_rows > 0) {
+              // Output data of each row
+              while ($row = $result->fetch_assoc()) {
+                $category_name = $row["category_name"];
+                echo '<div class="ml-5 mt-4">
                 <span class="text-green-400 text-2xl">-</span>
                 <a href="" class="Car grage text-2xl font-semibold">' . $category_name . '</a>
                 <span> 
                 <input class="ml-10" type="text" value="' . $category_name . '" readonly>
                 </span>
                 <div>
-                <h1>Price Per Day: </h1>       '.$row['price_per_day'].'
+                <h1>Price Per Day: </h1>       ' . $row['price_per_day'] . '
                 </div>
             </div>';
-                }
-              } else {
-                echo "No categories found.";
               }
-              ?>
+            } else {
+              echo "No categories found.";
+            }
+            ?>
 
-            </div>
           </div>
         </div>
-
-      </main>
-      <!--/Main-->
     </div>
 
+    </main>
+    <!--/Main-->
   </div>
+
+</div>
 
 </div>
 
