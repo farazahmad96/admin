@@ -3,10 +3,10 @@
             <div class="flex justify-between">
                 <div class="p-1 mx-3 inline-flex items-center">
                     <i class="fas fa-bars pr-2 text-white" onclick="sidebarToggle()"></i>
-                    <h1 class="text-white p-2">Logo</h1>
+                    <h1 class="text-white p-2">CodeMarket</h1>
                 </div>
                 <div class="p-1 flex flex-row items-center">
-                    <a href="https://github.com/tailwindadmin/admin" class="text-white p-2 mr-2 no-underline hidden md:block lg:block">Github</a>
+                    <a href="#" class="text-white p-2 mr-2 no-underline hidden md:block lg:block">Dashboard</a>
             <!-- Check if the username is set in the session -->
             <?php if (isset($_SESSION['username'])): ?>
                 <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
