@@ -14,7 +14,7 @@ if (isset($_POST['add_category'])) {
 }
 
 $categories = "SELECT * FROM business_category";
-$result = $conn->query($categories);
+$catResult = $conn->query($categories);
 
 $businesses = "SELECT * FROM businesses";
 $businesses_res = $conn->query($businesses);
@@ -68,33 +68,69 @@ $businesses_res = $conn->query($businesses);
 
         </div>
 
-        <div class="ml-5 mt-10 list-categories">
-          <h1 class="text-2xl">Category list</h1>
-          <div class="ml-5 mt-5">
 
-            <?php
-            if ($result->num_rows > 0) {
-              // Output data of each row
-              while ($row = $result->fetch_assoc()) {
-                $category_name = $row["category_name"];
-                echo '<div class="ml-5 mt-4">
-                <span class="text-green-400 text-2xl">-</span>
-                <a href="" class="Car grage text-2xl font-semibold">' . $category_name . '</a>
-                <span> 
-                <input class="ml-10" type="text" value="' . $category_name . '" readonly>
-                </span>
-                <div>
-                <h1>Price Per Day: </h1>       ' . $row['price_per_day'] . '
-                </div>
-            </div>';
-              }
-            } else {
-              echo "No categories found.";
-            }
-            ?>
+        <!--Grid Form-->
+        <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+          <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+              All Coupons
+            </div>
+            <div class="p-3">
+              <table class="table-responsive w-full rounded">
+                <thead>
+                  <tr>
+                    <th class="border w-1/6 px-4 py-2">Id</th>
+                    <th class="border w-1/4 px-4 py-2">Cateogry</th>
+                    <th class="border w-1/6 px-4 py-2">Price Per Day</th>
+                    <th class="border w-1/7 px-4 py-2">Code</th>
+                    <th class="border w-1/5 px-4 py-2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  if ($catResult->num_rows > 0) {
+                    // Output data of each row
+                    while ($catRow = $catResult->fetch_assoc()) {
+                      $code = 'code_' . $catRow['id'];
+                  ?>
+                      <tr>
+                        <td class="border px-4 py-2">
+                          <?= $catRow['id'] ?>
+                        </td>
+                        <td class="border px-4 py-2"> <?= $catRow['category_name'] ?></td>
+                        <td class="border px-4 py-2">
+                          <?= $catRow['price_per_day'] ?>
+                        </td>
+                        <td class="border px-4 py-2">
+                          <?= $code ?>
+                        </td>
 
+                        <td class="border px-4 py-2">
+                          <form method="POST" action="">
+                            <input type="hidden" name="coupon_id" value="<?= $catRow['id'] ?>">
+                            <button type="submit" name="recycle-coupon" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white">
+                              <i class="fa fa-pointer"></i>
+                            </button>
+                          </form>
+                          <form method="POST" action="">
+                            <input type="hidden" name="coupon_id" value="<?= $catRow['id'] ?>">
+                            <button type="submit" name="delete-coupon" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </form>
+                        </td>
+                      </tr>
+                  <?php
+                    }
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <!--/Grid Form-->
+
     </div>
 
     </main>
