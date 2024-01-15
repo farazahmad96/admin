@@ -1,5 +1,6 @@
 <?php
 include('../connection.php');
+$businessActive = 'bg-white';
 
 if (isset($_POST['add_category'])) {
   $category_name = $_POST['category_name'];

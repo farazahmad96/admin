@@ -1,5 +1,6 @@
 <?php
 include('../connection.php');
+$dashboardActive = 'bg-white';
 $noOfBusinesses = "SELECT COUNT(id) as total_businesses FROM businesses";
 $resultBusiness = $conn->query($noOfBusinesses);
 
@@ -42,7 +43,7 @@ $conn->close();
 ?>
 
 <!-- header  -->
-    <?php include('./include/header.php'); ?>
+<?php include('./include/header.php'); ?>
 <!-- header  -->
 
 <!--Container -->
@@ -50,7 +51,7 @@ $conn->close();
     <!--Screen-->
     <div class="min-h-screen flex flex-col">
         <!-- navbar  -->
-            <?php include('./include/navbar.php'); ?>
+        <?php include('./include/navbar.php'); ?>
         <!-- navbar  -->
 
         <div class="flex flex-1">
@@ -88,7 +89,7 @@ $conn->close();
                         <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                <?= $totalUsers ?>
+                                    <?= $totalUsers ?>
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
                                     Total Users
@@ -122,32 +123,32 @@ $conn->close();
                             <div class="table-responsive">
                                 <table class="table text-grey-darkest">
                                     <thead class="bg-grey-dark text-white text-normal">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Used</th>
-                                        <th scope="col">Current</th>
-                                        <th scope="col">Change</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Used</th>
+                                            <th scope="col">Current</th>
+                                            <th scope="col">Change</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="hidden">
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                Twitter
-                                            </button>
-                                        </td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>
-                                            <span class="text-green-500"><i class="fas fa-arrow-up"></i>-%</span>
-                                        </td>
-                                    </tr>
-                                    <?php
-$counter = 1;
-                while ($row = $resultCategories->fetch_assoc()) {
-                    echo '<tr>
+                                        <tr class="hidden">
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
+                                                    Twitter
+                                                </button>
+                                            </td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>
+                                                <span class="text-green-500"><i class="fas fa-arrow-up"></i>-%</span>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $counter = 1;
+                                        while ($row = $resultCategories->fetch_assoc()) {
+                                            echo '<tr>
                             <th scope="row">' . $counter . '</th>
                             <td>
                                 <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
@@ -160,10 +161,10 @@ $counter = 1;
                                 <span class="text-green-500"><i class="fas fa-arrow-up"></i>5%</span>
                             </td>
                         </tr>';
-                    $counter++;
-                }
+                                            $counter++;
+                                        }
 
-                ?>
+                                        ?>
 
                                     </tbody>
                                 </table>
@@ -184,29 +185,25 @@ $counter = 1;
                                 <div class="w-full">
 
                                     <div class="shadow w-full bg-grey-light">
-                                        <div class="bg-blue-500 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 45%">45%
+                                        <div class="bg-blue-500 text-xs leading-none py-1 text-center text-white" style="width: 45%">45%
                                         </div>
                                     </div>
 
 
                                     <div class="shadow w-full bg-grey-light mt-2">
-                                        <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 55%">55%
+                                        <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white" style="width: 55%">55%
                                         </div>
                                     </div>
 
 
                                     <div class="shadow w-full bg-grey-light mt-2">
-                                        <div class="bg-orange-500 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 65%">65%
+                                        <div class="bg-orange-500 text-xs leading-none py-1 text-center text-white" style="width: 65%">65%
                                         </div>
                                     </div>
 
 
                                     <div class="shadow w-full bg-grey-300 mt-2">
-                                        <div class="bg-red-800 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 75%">75%
+                                        <div class="bg-red-800 text-xs leading-none py-1 text-center text-white" style="width: 75%">75%
                                         </div>
                                     </div>
                                 </div>
@@ -217,10 +214,9 @@ $counter = 1;
                     <div class="hidden flex flex-1 flex-col md:flex-row lg:flex-row mx-2 p-1 mt-2 mx-auto lg:mx-2 md:mx-2 justify-between">
                         <!--Top user 1-->
                         <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
+                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full" />
                             <div class="flex justify-center -mt-8">
-                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt=""
-                                     class="rounded-full border-solid border-white border-2 -mt-3">
+                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt="" class="rounded-full border-solid border-white border-2 -mt-3">
                             </div>
                             <div class="text-center px-3 pb-6 pt-2">
                                 <h3 class="text-black text-sm bold font-sans">Olivia Dunham</h3>
@@ -240,10 +236,9 @@ $counter = 1;
                         </div>
                         <!--Top user 2-->
                         <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
+                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full" />
                             <div class="flex justify-center -mt-8">
-                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt=""
-                                     class="rounded-full border-solid border-white border-2 -mt-3">
+                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt="" class="rounded-full border-solid border-white border-2 -mt-3">
                             </div>
                             <div class="text-center px-3 pb-6 pt-2">
                                 <h3 class="text-black text-sm bold font-sans">Olivia Dunham</h3>
@@ -263,10 +258,9 @@ $counter = 1;
                         </div>
                         <!--Top user 3-->
                         <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
+                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full" />
                             <div class="flex justify-center -mt-8">
-                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt=""
-                                     class="rounded-full border-solid border-white border-2 -mt-3">
+                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt="" class="rounded-full border-solid border-white border-2 -mt-3">
                             </div>
                             <div class="text-center px-3 pb-6 pt-2">
                                 <h3 class="text-black text-sm bold font-sans">Olivia Dunham</h3>
@@ -293,7 +287,7 @@ $counter = 1;
         <!--Footer-->
         <footer class="bg-grey-darkest text-white p-2">
             <div class="flex flex-1 mx-auto">&copy; My Design</div>
-            <div class="flex flex-1 mx-auto">Distributed by:  <a href="https://themewagon.com/" target=" _blank">Themewagon</a></div>
+            <div class="flex flex-1 mx-auto">Distributed by: <a href="https://themewagon.com/" target=" _blank">Themewagon</a></div>
         </footer>
         <!--/footer-->
 

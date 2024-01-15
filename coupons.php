@@ -1,6 +1,7 @@
 <?php
 include('../connection.php');
-
+$couponsActive = 'bg-white';
+$currentDate = date("Y-m-d H:i:s");
 if (isset($_POST['add-coupon'])) {
     $code = strtoupper($_POST['code']);
     $coupon_type = $_POST['type'];
@@ -146,6 +147,12 @@ $resultCoupons = $conn->query($coupons);
                                     if ($resultCoupons->num_rows > 0) {
                                         // Output data of each row
                                         while ($row = $resultCoupons->fetch_assoc()) {
+                                            $expiresOnDate = $row['expire_on'];
+                                            if ($currentDate > $expiresOnDate) {
+                                                $expired = 'text-red-500';
+                                            } else {
+                                                $expired = '';
+                                            }
                                     ?>
                                             <tr>
                                                 <td class="border px-4 py-2">
@@ -156,7 +163,7 @@ $resultCoupons = $conn->query($coupons);
                                                     <?= $row['type'] ?>
                                                 </td>
                                                 <td class="border px-4 py-2">
-                                                    <?= $row['expire_on'] ?>
+                                                    <span class="<?= $expired ?>"><?= $expiresOnDate ?></span>
                                                 </td>
                                                 <td class="border px-4 py-2">
                                                     <?= $row['status'] == 1 ? '<i class="fas fa-check text-green-500 mx-2"></i>' : '<i class="fas fa-ban text-red-500 mx-2"></i>' ?>

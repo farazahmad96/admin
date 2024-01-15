@@ -1,5 +1,6 @@
 <?php
 include('../connection.php');
+$categoriesActive = 'bg-white';
 
 if (isset($_POST['add_category'])) {
   $category_name = $_POST['category_name'];
@@ -109,7 +110,7 @@ $businesses_res = $conn->query($businesses);
                           <form method="POST" action="">
                             <input type="hidden" name="coupon_id" value="<?= $catRow['id'] ?>">
                             <button type="submit" name="recycle-coupon" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white">
-                              <i class="fa fa-pointer"></i>
+                              <i class="fa fa-check"></i>
                             </button>
                           </form>
                           <form method="POST" action="">
